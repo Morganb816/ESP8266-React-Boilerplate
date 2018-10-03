@@ -23,11 +23,6 @@ const User = db.define('user', {
             return () => this.getDataValue('salt')
         }
     }
-}, {
-    hooks: {
-        beforeCreate: setSaltAndPassword,
-        beforeUpdate: setSaltAndPassword,
-    },
 });
 
 User.prototype.correctPassword = passwordAttempt => {
@@ -45,5 +40,8 @@ const setSaltAndPassword = user => {
         user.password = User.encryptPassword(user.password(), user.salt())
     }
 };
+
+User.beforeCreate(setSaltAndPassword);
+User.beforeUpdate(setSaltAndPassword);
 
 module.exports = User;
