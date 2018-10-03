@@ -18,6 +18,7 @@ router.post('/login', async (req, res, next) => {
         } else {
             req.login(user, err => {
                 if (err) {
+                    console.log(err);
                     next(err)
                 } else {
                     res.json(user)
@@ -42,7 +43,7 @@ router.post('/signup', async (req, res, next) => {
         console.error(err);
     }
 });
-router.delete('/logout', (req, res, next) => {
+router.post('/logout', (req, res, next) => {
     req.logout();
     req.session.destroy();
     res.sendStatus(204);

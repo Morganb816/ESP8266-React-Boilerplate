@@ -25,7 +25,7 @@ const User = db.define('user', {
     }
 });
 
-User.prototype.correctPassword = passwordAttempt => {
+User.prototype.correctPassword = function(passwordAttempt) {
     return User.encryptPassword(passwordAttempt, this.salt()) === this.password()
 };
 User.generateSalt = () => {
@@ -36,6 +36,7 @@ User.encryptPassword = (original, salt) => {
 };
 const setSaltAndPassword = user => {
     if (user.changed('password')) {
+        user.email = user.email.toLowerCase();
         user.salt = User.generateSalt()
         user.password = User.encryptPassword(user.password(), user.salt())
     }
