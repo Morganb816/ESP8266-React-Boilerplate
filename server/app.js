@@ -35,6 +35,8 @@ passport.deserializeUser(async (id, done) => {
   }
 })
 
+app.use('/auth', require('./routes/auth'));
+
 app.get('*', (req, res, next) => {
     res.sendFile(path.join(__dirname, '../public'));
 });
