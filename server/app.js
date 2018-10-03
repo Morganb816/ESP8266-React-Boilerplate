@@ -11,6 +11,17 @@ const passport = require('passport');
 
 dbStore.sync();
 
+passport.serializeUser((user, done) => done(null, user.id))
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await db.models.user.findById(id)
+    done(null, user)
+  } catch (err) {
+    done(err)
+  }
+})
+
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.urlencoded({extended: true}));
@@ -24,21 +35,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser((user, done) => done(null, user.id))
-
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await db.models.user.findById(id)
-    done(null, user)
-  } catch (err) {
-    done(err)
-  }
-})
-
 app.use('/auth', require('./routes/auth'));
 
 app.get('*', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../public'));
+    res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 const startServer = async () => {
