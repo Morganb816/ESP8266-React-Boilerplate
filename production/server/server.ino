@@ -3,10 +3,11 @@
 #include <ESP8266WebServer.h> // Lets us create a web server
 #include <WiFiClient.h> // handles clients
 #include <FS.h> // manages uploaded files
+#include <secrets.h> // Hide password and ssid
 
 // Define wifi name and password
-const char* ssid = "Datbois home";
-const char* pass = "Nagrom1996!";
+const char* ssid = SSID_SECRET;
+const char* pass = PASSWORD_SECRET;
 
 // HANDLE FILES
 String getContentType(String filename); // convert the file extension to the MIME type
