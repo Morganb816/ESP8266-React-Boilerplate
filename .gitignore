@@ -60,5 +60,5 @@ typings/
 # next.js build output
 .next
 
-# Folder for practicing code
-practice/
+# secrets folder
+secrets/

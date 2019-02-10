@@ -1,2 +1,2 @@
 # ESP8266-React-Boilerplate
-ESP8266 web server with a react front end. Develop on a local express server then deploy to ESP8266
+Boiler plate for running a web server of a ESP8266 chip with a react front end.
