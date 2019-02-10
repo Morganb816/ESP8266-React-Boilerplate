@@ -4,7 +4,7 @@ export default class extends Component {
     render() {
         return (
             <div>
-                <h1>sup im react being served from a fucking microchip</h1>
+                <h1>Hello World!</h1>
             </div>
         )
     }
