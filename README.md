@@ -1,2 +1,2 @@
-# Smart-Home
-Express / React app used for controlling and viewing status of any powered home features.
+# Home-Server
+Control panel hosted on a local ESP8266 web server
